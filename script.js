@@ -3,24 +3,25 @@ function startCounterAnimation() {
   const introScreen = document.getElementById("intro");
 
   let count = 1;
-  let delay = 120; // empieza más lento
+  let delay = 120;
 
   function updateCounter() {
     counterEl.textContent = count;
 
     if (count < 50) {
       count++;
-      delay = Math.max(20, delay * 0.9); // acelera progresivamente
+      delay = Math.max(20, delay * 0.9); // Acelera
       setTimeout(updateCounter, delay);
     } else {
-      // Hacer zoom final
       counterEl.classList.add("zoom");
+
       setTimeout(() => {
         introScreen.style.opacity = 0;
         setTimeout(() => {
           introScreen.style.display = "none";
-        }, 1000); // esperar fade out
-      }, 1000); // mostrar zoom un segundo
+          document.body.style.overflow = "auto"; // habilita scroll si es necesario
+        }, 1000);
+      }, 1000);
     }
   }
 
@@ -30,7 +31,6 @@ function startCounterAnimation() {
 window.addEventListener("DOMContentLoaded", () => {
   startCounterAnimation();
 
-  // Ya funciona el resto de botones como antes
   document.querySelectorAll('.gift-button').forEach(button => {
     const originalText = button.textContent;
     const hoverText = button.getAttribute('data-hover');
@@ -44,17 +44,3 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-
-document.querySelectorAll('.gift-button').forEach(button => {
-    const originalText = button.textContent;
-    const hoverText = button.getAttribute('data-hover');
-  
-    button.addEventListener('mouseenter', () => {
-      button.textContent = hoverText;
-    });
-  
-    button.addEventListener('mouseleave', () => {
-      button.textContent = originalText;
-    });
-  });
-  
