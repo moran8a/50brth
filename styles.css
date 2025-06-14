@@ -54,26 +54,25 @@ body {
   z-index: 0; /* Asegura que esté por debajo del carrusel */
 }
 
-/* Carrusel de imágenes */
 .image-carousel {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80%; /* Ajusta el ancho según sea necesario */
-  max-width: 600px; /* Ancho máximo para la imagen */
-  aspect-ratio: 16 / 9; /* Mantiene la proporción de la imagen */
+  width: 90%; /* Aumenta el ancho a un 90% del contenedor padre */
+  max-width: 900px; /* Permite que el carrusel sea más ancho en pantallas grandes */
+  aspect-ratio: 16 / 9; /* Mantiene la proporción de una pantalla de cine */
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden; /* Importante para que la imagen no se salga */
-  opacity: 0; /* Inicialmente oculto */
-  pointer-events: none; /* No interactuable hasta que sea visible */
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
   transition: opacity 0.5s ease-in-out;
-  z-index: 10; /* Asegura que esté por encima de la marca de agua */
+  z-index: 10;
 }
 
 .image-carousel.visible {
