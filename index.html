@@ -7,22 +7,25 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Pantalla de introducción con contador -->
   <div id="intro" class="intro-screen">
     <div id="counter" class="counter">1</div>
   </div>
 
-  <!-- Marca de agua y contenido principal -->
+  <div id="image-carousel" class="image-carousel">
+    <img id="carousel-image" src="" alt="Celebración de Cumpleaños" />
+    <button id="prev-button" class="carousel-button prev">&lt;</button>
+    <button id="next-button" class="carousel-button next">&gt;</button>
+  </div>
+
   <div class="background-mark">50</div>
   <div class="container">
     <h1>¡Feliz 50 Cumpleaños!</h1>
     <div class="button-group">
-      <a href="#" class="gift-button" data-hover="De Mamá, Noe y Cheli">REGALO 1</a>
-      <a href="#" class="gift-button" data-hover="De Nico y Teo">REGALO 2</a>
-      <a href="#" class="gift-button" data-hover="De Jorge">REGALO 3</a>
-    </div>
+      <a href="#" class="gift-button" data-hover="¡Regalo!">INICIO</a>
+      </div>
   </div>
-
-<script src="./script.js"></script>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="./script.js"></script>
 </body>
 </html>

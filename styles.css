@@ -51,15 +51,77 @@ body {
   color: rgba(200, 200, 200, 0.15);
   font-weight: 900;
   pointer-events: none;
-  z-index: 0;
+  z-index: 0; /* Asegura que esté por debajo del carrusel */
+}
+
+/* Carrusel de imágenes */
+.image-carousel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%; /* Ajusta el ancho según sea necesario */
+  max-width: 600px; /* Ancho máximo para la imagen */
+  aspect-ratio: 16 / 9; /* Mantiene la proporción de la imagen */
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Importante para que la imagen no se salga */
+  opacity: 0; /* Inicialmente oculto */
+  pointer-events: none; /* No interactuable hasta que sea visible */
+  transition: opacity 0.5s ease-in-out;
+  z-index: 10; /* Asegura que esté por encima de la marca de agua */
+}
+
+.image-carousel.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.image-carousel img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ajusta la imagen dentro del contenedor sin recortar */
+  display: block;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  z-index: 11; /* Por encima de la imagen */
+}
+
+.carousel-button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-button.prev {
+  left: 10px;
+}
+
+.carousel-button.next {
+  right: 10px;
 }
 
 /* Contenedor principal */
 .container {
   position: relative;
-  z-index: 1;
+  z-index: 1; /* Asegura que el contenido principal también esté visible */
   text-align: center;
   padding-top: 80px;
+  /* Puedes ajustar el padding o margen si el carrusel se superpone demasiado con el título */
 }
 
 /* Título */
