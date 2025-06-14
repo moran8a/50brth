@@ -19,7 +19,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // Carrusel de imágenes
   const carouselImages = [];
   for (let i = 1; i <= 12; i++) {
-    carouselImages.push(`images/img${String(i).padStart(3, '0')}.png`); // Asume que las imágenes están en una carpeta 'images'
+    carouselImages.push(`img${String(i).padStart(3, '0')}.png`); // Asume que las imágenes están en una carpeta 'images'
   }
 
   const carousel = document.getElementById("image-carousel");
