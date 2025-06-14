@@ -1,27 +1,124 @@
-/* Reset básico */
+/* --- 1. Variables de Color (Inspirado en Booking.com) --- */
+:root {
+  --booking-blue-dark: #003580; /* Azul oscuro principal */
+  --booking-blue: #006ce4;    /* Azul principal de enlaces/botones */
+  --booking-blue-light: #eff2f6; /* Fondo azul claro o destacado */
+  --booking-gray-text: #333;   /* Texto general oscuro */
+  --booking-gray-light: #6b6b6b; /* Texto secundario/placeholder */
+  --booking-border-color: #ddd; /* Color de bordes sutiles */
+  --booking-background: #f8f8f8; /* Fondo general de la página */
+  --booking-white: #ffffff;
+  --booking-shadow-light: rgba(0, 0, 0, 0.08); /* Sombra suave */
+  --booking-shadow-medium: rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+}
+
+/* --- 2. Reset básico --- */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* --- 3. Estilos Generales del Cuerpo y Tipografía --- */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-  color: #333;
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
+  font-family: Arial, Helvetica, sans-serif; /* Fuente limpia y legible */
+  background: var(--booking-background); /* Fondo general de la página */
+  color: var(--booking-gray-text);      /* Color de texto principal */
+  line-height: 1.5;                     /* Mejorar legibilidad */
+  min-height: 100vh;                    /* Asegura que el cuerpo ocupe toda la altura */
+  display: flex; /* Para centrar contenido en algunas páginas, por defecto apila */
+  flex-direction: column; /* Generalmente los elementos se apilan por defecto */
+  align-items: center; /* Centrar horizontalmente el contenido de la página */
+  justify-content: flex-start; /* Alinear contenido al inicio (superior) */
+  overflow-x: hidden; /* Evitar scroll horizontal */
+  overflow-y: auto;   /* Permitir scroll vertical si el contenido es demasiado largo */
+  position: relative; /* Para elementos posicionados */
+  padding: 20px; /* Un poco de padding general */
 }
 
-/* Pantalla de introducción */
+/* Encabezados */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--booking-blue-dark); /* Títulos en azul oscuro */
+  margin-bottom: 20px;
+  font-weight: bold; /* Asegura negrita */
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.8rem; /* Tamaño de h1 */
+  margin-top: 40px;
+}
+
+/* Enlaces (a) */
+a {
+  color: var(--booking-blue); /* Enlaces en azul principal */
+  text-decoration: none; /* Sin subrayado por defecto */
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+a:hover {
+  color: var(--booking-blue-dark); /* Azul más oscuro al pasar el ratón */
+  text-decoration: underline; /* Subrayado al pasar el ratón */
+}
+
+/* --- 4. Componentes Genéricos: Botones y Contenedores/Tarjetas --- */
+
+/* Botones Generales (Basado en estilo Booking.com) */
+.gift-button,
+.experience-button,
+.warning-content button {
+  display: inline-flex; /* Para centrar texto y permitir padding */
+  align-items: center;
+  justify-content: center;
+  padding: 15px 30px;
+  background-color: var(--booking-blue); /* Fondo azul principal */
+  color: var(--booking-white);         /* Texto blanco */
+  border: none;
+  border-radius: 4px; /* Bordes ligeramente redondeados */
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 5px var(--booking-shadow-light); /* Sombra suave */
+  white-space: nowrap; /* Evita que el texto se rompa */
+}
+
+.gift-button:hover,
+.experience-button:hover,
+.warning-content button:hover {
+  /* No se cambia el background-color aquí para mantener el color original */
+  transform: scale(1.02); /* Un ligero zoom, ajusta el valor si quieres más o menos */
+  box-shadow: 0 4px 10px var(--booking-shadow-medium); /* Mantenemos la sombra para el efecto de "levantar" */
+}
+
+/* Contenedores y Tarjetas (Estilo unificado) */
+.container,
+.travel-plan-card,
+.choice-item,
+.warning-content,
+.gift-container { /* Incluimos gift-container aquí para un estilo de tarjeta base */
+  background-color: var(--booking-white);
+  border: 1px solid var(--booking-border-color); /* Borde sutil */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 2px 10px var(--booking-shadow-light);
+  padding: 30px;
+  margin-bottom: 20px;
+  width: 90%;
+  max-width: 900px; /* Ancho máximo para el contenido principal */
+  box-sizing: border-box;
+}
+
+/* --- 5. Componentes Específicos de tus Páginas --- */
+
+/* Pantalla de Introducción (index.html) */
 .intro-screen {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #f5f5f5;
+  background-color: var(--booking-background); /* Fondo de la intro */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,52 +129,51 @@ body {
 .counter {
   font-size: 8rem;
   font-weight: 800;
-  color: #888;
+  color: var(--booking-gray-light);
   transition: transform 0.6s ease, color 0.6s ease;
 }
 
 .counter.zoom {
   transform: scale(4);
-  color: #aaa;
+  color: var(--booking-blue); /* Un toque de color Booking.com */
 }
 
-/* Marca de agua */
+/* Marca de Agua (index.html, etc.) */
 .background-mark {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 20rem;
-  color: rgba(200, 200, 200, 0.15);
+  color: rgba(0, 53, 128, 0.05); /* Azul oscuro muy transparente */
   font-weight: 900;
   pointer-events: none;
-  z-index: 0; /* Asegura que esté por debajo del carrusel */
+  z-index: 0;
 }
 
+/* Carrusel de Imágenes (.image-carousel) */
 .image-carousel {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%; /* Aumenta el ancho a un 90% del contenedor padre */
-  max-width: 900px; /* Permite que el carrusel sea más ancho en pantallas grandes */
-  aspect-ratio: 16 / 9; /* Mantiene la proporción de una pantalla de cine */
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  /* Se beneficia de los estilos de contenedor/tarjeta arriba */
+  position: relative; /* Cambiado a relative para flujo normal si se usa en body flex */
+  top: auto;
+  left: auto;
+  transform: none;
+  width: 90%;
+  max-width: 800px; /* O el ancho que desees para el carrusel */
+  aspect-ratio: 16 / 9; /* Mantiene la proporción */
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  opacity: 0;
+  opacity: 0; /* Para la animación de entrada controlada por JS */
   pointer-events: none;
   transition: opacity 0.5s ease-in-out;
-  z-index: 10;
+  z-index: 10; /* Para que esté por encima de la marca de agua */
 }
 
 .image-carousel.visible {
   opacity: 1;
-  pointer-events: all;
+  pointer-events: auto;
 }
 
 .image-carousel img {
@@ -87,73 +183,207 @@ body {
   display: block;
 }
 
+/* Botones específicos del carrusel */
 .carousel-button {
-  position: absolute;
+  background-color: rgba(0, 0, 0, 0.4); /* Botones de navegación semi-transparentes */
+  color: var(--booking-white);
+  border-radius: 50%; /* Redondos */
+  padding: 12px; /* Ajusta el tamaño */
+  font-size: 1.8rem;
+  line-height: 1; /* Asegura que el símbolo esté centrado */
+  width: 45px; /* Ancho fijo para hacerlos perfectamente redondos */
+  height: 45px; /* Alto fijo */
+  box-shadow: 0 2px 5px var(--booking-shadow-medium);
+  border: none; /* Sin borde */
+  transition: background-color 0.2s ease;
+  position: absolute; /* Mantiene la posición absoluta para sobresalir del carrusel */
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  font-size: 1.5rem;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
   z-index: 11; /* Por encima de la imagen */
 }
-
 .carousel-button:hover {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.6);
+  transform: translateY(-50%); /* Asegura que no se mueva verticalmente en hover */
 }
+.carousel-button.prev { left: 15px; }
+.carousel-button.next { right: 15px; }
 
-.carousel-button.prev {
-  left: 10px;
-}
-
-.carousel-button.next {
-  right: 10px;
-}
-
-/* Contenedor principal */
+/* Contenedor principal de otras páginas (ej. index.html) */
+/* Se beneficia de los estilos de contenedor/tarjeta arriba */
 .container {
-  position: relative;
-  z-index: 1; /* Asegura que el contenido principal también esté visible */
-  text-align: center;
+  /* Si necesitas que el container tenga un padding-top especial en index.html */
   padding-top: 80px;
-  /* Puedes ajustar el padding o margen si el carrusel se superpone demasiado con el título */
+  margin-top: 40px; /* Espacio con el título */
+  margin-bottom: 40px; /* Espacio con los regalos */
 }
 
-/* Título */
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: 40px;
-  color: #555;
-}
-
-/* Grupo de botones */
+/* Grupo de botones (ej. en index.html) */
 .button-group {
   display: flex;
   justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
+  margin-top: 30px; /* Espacio con el contenido de arriba */
 }
 
-/* Estilo de botones */
-.gift-button {
-  text-decoration: none;
-  background-color: #dce3ea;
-  color: #333;
-  padding: 15px 25px;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 1;
+/* Contenedor de Regalos (Específico para #gift-section) */
+/* La regla .gift-container genérica arriba le da los estilos de tarjeta */
+.gift-container {
+  display: flex; /* Hacemos que los hijos se alineen en fila */
+  flex-wrap: wrap; /* Permite que los regalos salten a la siguiente línea si no hay espacio */
+  justify-content: center; /* Centra los regalos horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  gap: 30px; /* Espacio entre cada regalo */
+  margin-top: 50px; /* Espacio superior */
+  margin-bottom: 50px; /* Espacio inferior */
+  width: 90%; /* Ancho del contenedor de regalos */
+  max-width: 1000px; /* Ancho máximo */
+  padding: 20px; /* Padding interno */
 }
 
-.gift-button:hover {
-  background-color: #b7c4cf;
-  transform: scale(1.05);
+/* Cada "caja de regalo" individual */
+.gift {
+  width: 150px; /* Ancho del regalo */
+  height: 150px; /* Alto del regalo */
+  border-radius: 10px; /* Bordes redondeados */
+  border: 3px solid var(--booking-blue); /* Borde de color Booking.com */
+  box-shadow: 0 5px 15px var(--booking-shadow-light);
   cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  display: flex; /* Para centrar contenido si añades iconos/texto dentro */
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  color: var(--booking-white);
+  position: relative;
+  overflow: hidden;
+
+  /* Imagen del paquete de regalo */
+  background-image: url('gift.png'); /* Asegúrate de que esta ruta sea correcta */
+  background-size: contain; /* Ajusta la imagen dentro del div */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent; /* Fondo transparente si la imagen cubre todo */
+}
+
+.gift:hover {
+  transform: scale(1.08) rotate(2deg); /* Efecto al pasar el ratón */
+  box-shadow: 0 8px 20px var(--booking-shadow-medium);
+  /* background-color: #e76c60; */ /* Opcional: si quieres un cambio de color al pasar el ratón */
+}
+
+/* Contenedor de la Sección de Regalos (para centrar y controlar la visibilidad desde JS) */
+#gift-section {
+  width: 100%; /* Ocupa todo el ancho */
+  display: flex; /* Usa flexbox para centrar su contenido (el gift-container) */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente si hubiera altura */
+  flex-direction: column; /* Apila el contenedor de regalos y cualquier otro elemento */
+}
+
+/* Ajustes para los items de elección de regalo/persona (.choice-item) */
+.choice-container {
+    display: flex;
+    gap: 40px;
+    margin-top: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+}
+/* La regla .choice-item genérica de contenedor/tarjeta ya le da base */
+.choice-item {
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    flex-basis: 250px; /* Ancho base de cada item */
+    flex-grow: 1; /* Permitir que crezca */
+    max-width: 300px; /* Máximo ancho de la tarjeta */
+}
+.choice-item img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--booking-blue);
+    box-shadow: 0 2px 5px var(--booking-shadow-light);
+    margin-bottom: 15px;
+}
+.choice-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px var(--booking-shadow-medium);
+}
+
+
+/* --- 6. Responsive adjustments (Media Queries) --- */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  .gift-button, .experience-button, .warning-content button {
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+  .container, .travel-plan-card, .choice-item, .warning-content, .gift-container {
+    padding: 20px;
+  }
+  .carousel-button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+  .background-mark {
+    font-size: 15rem;
+  }
+  .gift-container {
+    gap: 20px; /* Reduce el espacio entre regalos en pantallas más pequeñas */
+  }
+  .gift {
+    width: 120px; /* Regalos más pequeños en móviles */
+    height: 120px;
+  }
+  .choice-item img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+  .gift-button, .experience-button, .warning-content button {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+  .container, .travel-plan-card, .choice-item, .warning-content, .gift-container {
+    padding: 15px;
+  }
+  .background-mark {
+    font-size: 10rem;
+  }
+  .gift-container {
+    gap: 15px;
+  }
+  .gift {
+    width: 100px; /* Aún más pequeños para móviles muy estrechos */
+    height: 100px;
+  }
+  .choice-item img {
+    width: 100px;
+    height: 100px;
+  }
+}
+.video-container video { /* Cambiamos iframe por video */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    object-fit: contain; /* Asegura que el video se ajuste dentro del contenedor, manteniendo su relación de aspecto */
 }

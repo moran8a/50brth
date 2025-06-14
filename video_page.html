@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Tu Video Especial!</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos específicos para esta página */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Alinea arriba para dar espacio al título */
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            background: var(--booking-background); /* Usamos el color de Booking.com */
+            color: var(--booking-gray-text);
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            margin-bottom: 40px;
+            color: var(--booking-blue-dark); /* Color de título de Booking.com */
+            font-size: 2.8rem;
+        }
+
+        .video-container {
+            position: relative;
+            width: 90%; /* Ancho del contenedor del video */
+            max-width: 800px; /* Ancho máximo para el video */
+            /* Esto es clave para mantener la proporción 16:9 del video */
+            padding-bottom: 56.25%; /* Para mantener la proporción 16:9 (altura es 56.25% del ancho) */
+            height: 0; /* Necesario para que padding-bottom funcione como altura */
+            overflow: hidden; /* Oculta cualquier cosa que se salga del contenedor */
+            background-color: black; /* Fondo negro para el video */
+            border-radius: 12px;
+            box-shadow: 0 4px 15px var(--booking-shadow-medium);
+            margin-bottom: 40px; /* Espacio debajo del video */
+        }
+
+        /* Estilos para el video local */
+        .video-container video { /* Cambiamos iframe por video */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            object-fit: contain; /* Asegura que el video se ajuste dentro del contenedor, manteniendo su relación de aspecto */
+        }
+
+        /* Estilos para el botón de regreso */
+        .back-button {
+            /* Usamos los estilos unificados de botón de styles.css */
+            margin-top: 20px; /* Espacio arriba del botón */
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            .video-container {
+                width: 100%;
+            }
+        }
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            .video-container {
+                width: 100%;
+                padding-bottom: 75%; /* Ajusta si el video no es 16:9 en móvil, o si quieres un 4:3 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>¡Un Momento Especial para Ti!</h1>
+
+    <div class="video-container">
+        <video controls autoplay>
+            <source src="niños.mp4" type="video/mp4">
+            Tu navegador no soporta el elemento de video.
+        </video>
+    </div>
+
+    <a href="index.html" class="gift-button back-button" data-hover="Volver">Volver a los Regalos</a>
+
+</body>
+</html>

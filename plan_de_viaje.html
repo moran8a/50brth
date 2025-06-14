@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Tu Gran Plan de Viaje!</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos específicos para esta página */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Usa min-height para permitir que el contenido crezca */
+            text-align: center;
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            color: #333;
+            overflow-y: auto; /* Permite scroll si el contenido es largo */
+            padding: 40px 20px; /* Añade padding para espacio en los bordes */
+            box-sizing: border-box; /* Incluye padding en el tamaño total */
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #4CAF50; /* Un verde vibrante para la emoción del viaje */
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .travel-plan-card {
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+            padding: 40px;
+            max-width: 800px;
+            width: 90%;
+            margin-bottom: 40px;
+            text-align: left;
+            opacity: 0; /* Inicialmente oculto */
+            transform: translateY(20px); /* Ligeramente desplazado para la animación */
+            animation: fadeInSlideUp 1s forwards ease-out; /* Animación de entrada */
+        }
+
+        @keyframes fadeInSlideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .plan-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 1.4rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .plan-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .plan-item strong {
+            color: #333;
+            font-size: 1.6rem;
+            margin-left: 10px;
+        }
+
+        .plan-item .icon {
+            font-size: 2rem;
+            margin-right: 20px;
+            color: #2196F3; /* Azul para iconos */
+        }
+
+        /* Iconos de Font Awesome (necesitarás el CDN en el <head>) */
+        .icon.date::before { content: "📅"; } /* Emoji simple si no usas Font Awesome */
+        .icon.hotel::before { content: "🏨"; }
+        .icon.concert::before { content: "🎻"; }
+
+        /* Estilos para el botón de regreso */
+        .back-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 15px 30px;
+            background-color: #f44336; /* Rojo para volver */
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .back-button:hover {
+            background-color: #d32f2f;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.8rem;
+                margin-bottom: 30px;
+            }
+            .travel-plan-card {
+                padding: 30px;
+            }
+            .plan-item {
+                font-size: 1.2rem;
+            }
+            .plan-item strong {
+                font-size: 1.4rem;
+            }
+            .plan-item .icon {
+                font-size: 1.8rem;
+                margin-right: 15px;
+            }
+            .back-button {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .travel-plan-card {
+                padding: 20px;
+            }
+            .plan-item {
+                flex-direction: column; /* Apila icono y texto en móviles pequeños */
+                align-items: flex-start;
+                margin-bottom: 20px;
+            }
+            .plan-item .icon {
+                margin-bottom: 5px;
+            }
+        }
+
+    </style>
+    </head>
+<body>
+    <h1>¡Tu Regalo Especial: Un Plan de Viaje Inolvidable!</h1>
+
+    <div class="travel-plan-card">
+        <div class="plan-item">
+            <span class="icon date"></span>
+            <span>Fecha del Viaje: <strong>12 al 14 de Julio de 2025</strong></span>
+        </div>
+        <div class="plan-item">
+            <span class="icon hotel"></span>
+            <span>Alojamiento: <strong>Hotel Snö Villa de Sallent 4</strong></span>
+        </div>
+        <div class="plan-item">
+            <span class="icon concert"></span>
+            <span>Evento Especial: <strong>Concierto de Ara Malikian</strong></span>
+        </div>
+        <div class="plan-item">
+            <span class="icon concert"></span>
+            <span>Dónde: <strong>Festival Pirineos Sur</strong></span>
+        </div>
+    </div>
+
+    <a href="pagina_personal.html" class="back-button">Volver a la Elección</a>
+
+</body>
+</html>

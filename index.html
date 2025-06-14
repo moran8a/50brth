@@ -5,27 +5,100 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>50 Cumpleaños</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Estilos específicos para index.html si es necesario sobrescribir algo */
+    /* Aseguramos que el body sea un flexbox para centrar el .container y el gift-section */
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Centra verticalmente el contenido principal del body */
+        align-items: center;     /* Centra horizontalmente el contenido principal del body */
+        min-height: 100vh;       /* Asegura que el body ocupe toda la altura de la ventana */
+        overflow-y: auto;        /* Permite scroll si el contenido es demasiado largo */
+        overflow-x: hidden;      /* Evita scroll horizontal no deseado */
+    }
+
+    /* Clase para ocultar elementos rápidamente */
+    .hidden {
+        display: none !important;
+    }
+
+    /* Ajuste para el container principal */
+    .container {
+        /* Estos márgenes aseguran que esté centrado y tenga espacio */
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 40px; /* Espacio desde el borde superior o elementos anteriores */
+        margin-bottom: 40px; /* Espacio hacia abajo */
+    }
+
+    /* Asegúrate de que el gift-section tenga un margen si no se centra bien */
+    #gift-section {
+        margin-top: 20px; /* Espacio entre el container principal y la sección de regalos */
+        margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
   <div id="intro" class="intro-screen">
     <div id="counter" class="counter">1</div>
   </div>
 
-  <div id="image-carousel" class="image-carousel">
-    <img id="carousel-image" src="" alt="Celebración de Cumpleaños" />
-    <button id="prev-button" class="carousel-button prev">&lt;</button>
-    <button id="next-button" class="carousel-button next">&gt;</button>
+  <div class="background-mark">50</div>
+
+  <div class="container hidden"> 
+    <h1>¡Feliz 50 Cumpleaños Lara!</h1>
+    <div class="button-group">
+      <a href="#" id="show-gifts-button" class="gift-button" data-hover="¡Descúbrelos!">INICIAR</a>
+    </div>
   </div>
 
-  <div class="background-mark">50</div>
-  <div class="container">
-    <h1>¡Feliz 50 Cumpleaños!</h1>
-    <div class="button-group">
-      <a href="#" class="gift-button" data-hover="¡Regalo!">INICIO</a>
-      </div>
+  <div id="gift-section" class="hidden"> 
+    <div class="gift-container">
+      <div class="gift" data-target="grid_imagenes.html"></div>
+      <div class="gift" data-target="gift_choice.html"></div>
+      <div class="gift" data-target="video_page.html"></div>
+      <div class="gift" data-target="carrusel.html"></div>
+    </div>
   </div>
- 
+
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="./script.js"></script>
+  <script>
+    // Este script complementa script.js y maneja las interacciones específicas de index.html
+    document.addEventListener("DOMContentLoaded", () => {
+      const showGiftsButton = document.getElementById("show-gifts-button");
+      const giftSection = document.getElementById("gift-section");
+      const mainContainer = document.querySelector('.container'); // El contenedor del título
+
+      if (showGiftsButton) {
+        showGiftsButton.addEventListener("click", (event) => {
+          event.preventDefault(); // Evita que el enlace # salte al principio de la página
+          if (giftSection) {
+            giftSection.classList.remove("hidden"); // Muestra la sección de regalos
+            if (mainContainer) {
+                mainContainer.classList.add("hidden"); // Oculta el contenedor principal
+            }
+            document.querySelector('.background-mark').classList.add("hidden"); // Oculta la marca de agua
+          }
+        });
+      }
+
+      // Añadir funcionalidad de click a cada regalo para ir a su página
+      const gifts = document.querySelectorAll(".gift");
+      gifts.forEach(gift => {
+          gift.addEventListener("click", () => {
+              // Añade una clase para una posible animación de "abrir" el regalo
+              gift.classList.add("opening-gift"); 
+              const targetPage = gift.getAttribute("data-target");
+              setTimeout(() => {
+                  if (targetPage) {
+                      window.location.href = targetPage;
+                  }
+              }, 700); // Pequeño retardo para que se vea la animación si la añades con CSS
+          });
+      });
+    });
+  </script>
 </body>
 </html>
