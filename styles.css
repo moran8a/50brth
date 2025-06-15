@@ -387,3 +387,15 @@ a:hover {
     border: none;
     object-fit: contain; /* Asegura que el video se ajuste dentro del contenedor, manteniendo su relación de aspecto */
 }
+
+.plan-item a {
+    color: var(--booking-blue); /* Color de enlace azul de Booking.com */
+    text-decoration: none; /* Sin subrayado por defecto */
+    font-weight: bold; /* Hacer el texto del enlace más visible */
+    transition: color 0.3s ease;
+}
+
+.plan-item a:hover {
+    color: var(--booking-blue-dark); /* Azul oscuro al pasar el ratón */
+    text-decoration: underline; /* Subrayado al pasar el ratón */
+}

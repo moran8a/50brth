@@ -1,6 +1,6 @@
 window.addEventListener("DOMContentLoaded", () => {
   const carouselImages = [];
-  for (let i = 1; i <= 12; i++) {
+  for (let i = 1; i <= 14; i++) {
     carouselImages.push(`img${String(i).padStart(3, '0')}.png`);
   }
 
