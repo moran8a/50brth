@@ -6,57 +6,82 @@
     <title>Elige la Experiencia</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Estilos específicos para esta página */
+        /* Estilos específicos para esta página (similares a gift_choice.html) */
         body {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh; /* Permite que el body crezca si el contenido lo requiere */
             text-align: center;
             background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); /* Fondo similar */
             color: #333;
-            overflow: hidden;
+            overflow-y: auto; /* Permite scroll vertical cuando el contenido exceda la altura */
+            overflow-x: hidden; /* Evita scroll horizontal no deseado */
             position: relative; /* Necesario para el warning flotante */
+            padding: 40px 20px; /* Añade padding para asegurar espacio */
+            box-sizing: border-box; /* Incluye padding en el tamaño total */
         }
 
-        .experience-container {
+        h1 {
+            font-size: 3rem;
+            color: #4CAF50; /* Un verde vibrante para la emoción del viaje */
+            margin-bottom: 50px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Estilos para el contenedor de las opciones de elección */
+        .choice-container {
             display: flex;
-            gap: 30px;
+            gap: 40px; /* Espacio entre las imágenes */
             margin-top: 50px;
-            flex-wrap: wrap;
+            flex-wrap: wrap; /* Permite que las opciones se envuelvan en pantallas pequeñas */
             justify-content: center;
             align-items: center;
+            max-width: 800px; /* Limita el ancho del contenedor */
+            width: 90%; /* Ancho responsivo */
         }
 
-        .experience-button {
-            text-decoration: none;
-            background-color: #dce3ea;
-            color: #333;
-            padding: 20px 40px;
-            border-radius: 15px;
-            font-size: 1.5rem;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none; /* Asegúrate de que no haya borde predeterminado */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        .choice-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none; /* Asegura que no haya subrayado en los enlaces */
+            color: inherit; /* Hereda el color del texto */
         }
 
-        .experience-button:hover {
-            background-color: #b7c4cf;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        .choice-item img {
+            width: 200px; /* Tamaño fijo de las imágenes */
+            height: 200px; /* Altura fija para que sean redondas */
+            border-radius: 50%; /* ¡Para hacerlas redondas! */
+            object-fit: cover; /* Recorta la imagen para que rellene el círculo sin distorsionarse */
+            border: 5px solid var(--booking-blue); /* Borde azul alrededor de cada imagen */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra para cada imagen */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave para el hover */
+            margin-bottom: 15px; /* Espacio entre imagen y texto */
+            cursor: pointer; /* Indica que es clickeable */
         }
 
-        /* Estilos para el warning "Presupuesto insuficiente" */
+        .choice-item:hover img {
+            transform: scale(1.05); /* Ligerísimo zoom al pasar el ratón */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
+        }
+
+        .choice-item p {
+            font-size: 1.3rem;
+            color: #555;
+            margin-bottom: 30px; /* Espacio debajo del texto */
+            font-weight: bold; /* Texto en negrita */
+        }
+
+        /* Estilos para el warning flotante (mantenemos los mismos de gift_choice.html) */
         .warning-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.6);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -72,12 +97,13 @@
         }
 
         .warning-content {
-            background-color: #fff;
+            background-color: white;
             padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
             text-align: center;
-            transform: scale(0.8);
+            max-width: 400px;
+            transform: scale(0.9);
             transition: transform 0.3s ease;
         }
 
@@ -86,9 +112,9 @@
         }
 
         .warning-content h2 {
-            color: #e74c3c; /* Color rojo para el error */
-            font-size: 2.2rem;
-            margin-bottom: 20px;
+            color: #e74c3c;
+            font-size: 2rem;
+            margin-bottom: 15px;
         }
 
         .warning-content p {
@@ -111,14 +137,58 @@
         .warning-content button:hover {
             background-color: #2980b9;
         }
+
+        /* Media Queries para responsividad (ajustar si es necesario) */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            .choice-container {
+                gap: 30px;
+            }
+            .choice-item img {
+                width: 150px;
+                height: 150px;
+            }
+            .choice-item p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .choice-container {
+                flex-direction: column; /* Apila las opciones en móviles muy pequeños */
+                gap: 20px;
+            }
+            .choice-item img {
+                width: 120px;
+                height: 120px;
+            }
+            .choice-item p {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
     <h1>¡Elige la experiencia!</h1>
 
-    <div class="experience-container">
-        <button class="experience-button" id="thailand-button">Thailandia</button>
-        <a href="plan_de_viaje.html" class="experience-button">Otra</a> </div>
+    <div class="choice-container">
+        <div class="choice-item">
+            <img src="thailandia.jpg" alt="Foto paradisíaca de Tailandia" id="thailand-image">
+            <p>Thailandia</p>
+        </div>
+
+        <div class="choice-item">
+            <a href="plan_de_viaje.html">
+                <img src="otras.jpg" alt="Otras opciones">
+            </a>
+            <p>Otras</p>
+        </div>
+    </div>
 
     <div class="warning-overlay" id="warningOverlay">
         <div class="warning-content">
@@ -129,10 +199,12 @@
     </div>
 
     <script>
-        document.getElementById('thailand-button').addEventListener('click', function() {
+        // Cambiamos el evento click para que se active en la imagen de Tailandia
+        document.getElementById('thailand-image').addEventListener('click', function() {
             document.getElementById('warningOverlay').classList.add('visible');
         });
 
+        // Este es el listener que faltaba o estaba cortado
         document.getElementById('closeWarningButton').addEventListener('click', function() {
             document.getElementById('warningOverlay').classList.remove('visible');
         });
